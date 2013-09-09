@@ -26,5 +26,5 @@ def plot(right, wrong, line, show=False, axis=111, other=None, xlim=None, ylim=N
     plt.ylim(ylim or [-1,1])
     plt.xlim(xlim or [-1,1])
     if other != None:
-        plt(other[0], other[1], other[2])
+        plt.plot(other[0], other[1], other[2])
     plt.draw()

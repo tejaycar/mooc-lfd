@@ -8,11 +8,13 @@ HW2-8
 
 import numpy as np
 import LinearRegression as lr
-import matplotlib.pyplot as plt
+from utils import plot
+from matplotlib.pyplot import pause
 
 wrongIn = 0.0
 runs = 1000
 d = 1000
+show=False
 
 for i in range(0,runs):
     print "Running test # " + str(i)
@@ -22,18 +24,16 @@ for i in range(0,runs):
     noise = np.append(np.ones((d*.9)), np.ones((d - d*.9)) * -1, axis=0)
     np.random.shuffle(noise)
     truth *= noise
-    i,o,w = lr.runLR(x, truth, show=False)
+    i,o,w = lr.runLR(x, truth, show=show)
     
-#    plotX = np.linspace(-1,1,1000)
-#    plotY = np.sqrt(np.square(plotX) * -1 + .6) 
-#    plt.subplot(311)
-#    plt.cla
-#    plt.plot(plotX,plotY,'b-')
-#    plt.plot(plotX,-plotY,'b-')
-#    green = x[(truth == 1), 1:]
-#    red = x[(truth < 1), 1:]  
-#    plt.plot(green[:,0], green[:,1], 'go')
-#    plt.plot(red[:,0], red[:,1], 'ro')
+    plotX = np.linspace(-1,1,1000)
+    plotY = np.sqrt(np.square(plotX) * -1 + .6) 
+    plotX = np.append(plotX, plotX, axis=1)
+    plotY = np.append(plotY, -plotY, axis=1)
+    green = x[(truth == 1), 1:]
+    red = x[(truth < 1), 1:]  
+    plot(green, red, [7,1,7], axis=311, show=show, other=[plotX, plotY,'b-'])
+    pause(.1)
     
     wrongIn += i
 print "Average of " + str(wrongIn/runs) + " wrong in sample per run"

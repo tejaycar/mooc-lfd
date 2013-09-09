@@ -8,7 +8,6 @@ HW2-10
 
 import numpy as np
 import LinearRegression as lr
-import matplotlib.pyplot as plt
 
 wrongIn = 0.0
 runs = 1000
